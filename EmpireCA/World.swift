@@ -21,7 +21,7 @@ class World {
     }
     
     func startHumanity(view: UIView) {
-        let bitmap = Bitmap.init(width: width, height: height)
+        let bitmap = Bitmap(width: width, height: height)
         for id in 0..<colonyNumber {
             while true {
                 let x = Int(arc4random_uniform(UInt32(height)))
@@ -30,7 +30,7 @@ class World {
                     let person = Person(colonyID: id, x: x, y: y)
                     bitmap[x, y] = Bitmap.Pixel(r: 40, g: 0, b: 0, a: 255)
                     let backgroundImage = UIImageView(frame: view.frame)
-                    backgroundImage.image = UIImage.init(cgImage: bitmap.cgImage())
+                    backgroundImage.image = UIImage(cgImage: bitmap.cgImage())
                     view.insertSubview(backgroundImage, aboveSubview: view)
                     // somehow add the person to the data structure
                     break // get out of the while loop
