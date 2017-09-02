@@ -24,8 +24,8 @@ class World {
         let bitmap = Bitmap.init(width: width, height: height)
         for id in 0..<colonyNumber {
             while true {
-                let x = Int(arc4random_uniform(750))
-                let y = Int(arc4random_uniform(1334))
+                let x = Int(arc4random_uniform(UInt32(height)))
+                let y = Int(arc4random_uniform(UInt32(width)))
                 if (backgroundImage?.isLand(at: CGPoint(x: x, y: y)))! && personAt(x: x, y: y) == nil {
                     let person = Person(colonyID: id, x: x, y: y)
                     bitmap[x, y] = Bitmap.Pixel(r: 40, g: 0, b: 0, a: 255)
@@ -57,8 +57,8 @@ extension UIImage {
         let pixelInfo: Int = ((Int(self.size.width) * Int(pos.y)) + Int(pos.x)) * 4
         
         //  let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
-        let g = CGFloat(data[pixelInfo+1])
-        let b = CGFloat(data[pixelInfo+2])
+        let g = data[pixelInfo+1]
+        let b = data[pixelInfo+2]
         // let a = CGFloat(data[pixelInfo+3]) / CGFloat(255.0)
         if g > 150, b < 50{
             return true
