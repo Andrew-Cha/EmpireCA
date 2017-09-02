@@ -8,18 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        createBackgroundImage()
+            World(colonyCount: 200).startHumanity(view: self.view)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
+    func createBackgroundImage(){
+        let backgroundImage = UIImageView(frame: view.frame)
+        backgroundImage.image = UIImage(named: "world_map.png")
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
 
 }
 

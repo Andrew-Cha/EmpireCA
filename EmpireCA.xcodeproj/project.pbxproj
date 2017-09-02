@@ -14,6 +14,10 @@
 		DF2958691F59A4FE007B18FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2958671F59A4FE007B18FC /* LaunchScreen.storyboard */; };
 		DF2958741F59A4FE007B18FC /* EmpireCATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958731F59A4FE007B18FC /* EmpireCATests.swift */; };
 		DF29587F1F59A4FE007B18FC /* EmpireCAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29587E1F59A4FE007B18FC /* EmpireCAUITests.swift */; };
+		DF29588D1F59A7DA007B18FC /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588C1F59A7DA007B18FC /* People.swift */; };
+		DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588E1F59A7E4007B18FC /* Colonies.swift */; };
+		DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958921F59AA27007B18FC /* Bitmap.swift */; };
+		DF2958951F5B0845007B18FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958941F5B0845007B18FC /* World.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		DF29587A1F59A4FE007B18FC /* EmpireCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmpireCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29587E1F59A4FE007B18FC /* EmpireCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpireCAUITests.swift; sourceTree = "<group>"; };
 		DF2958801F59A4FE007B18FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF29588C1F59A7DA007B18FC /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		DF29588E1F59A7E4007B18FC /* Colonies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colonies.swift; sourceTree = "<group>"; };
+		DF2958921F59AA27007B18FC /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
+		DF2958941F5B0845007B18FC /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				DF29585E1F59A4FE007B18FC /* AppDelegate.swift */,
-				DF2958601F59A4FE007B18FC /* ViewController.swift */,
-				DF2958621F59A4FE007B18FC /* Main.storyboard */,
+				DF2958911F59A977007B18FC /* Storyboard */,
+				DF2958901F59A91D007B18FC /* World */,
 				DF2958651F59A4FE007B18FC /* Assets.xcassets */,
-				DF2958671F59A4FE007B18FC /* LaunchScreen.storyboard */,
 				DF29586A1F59A4FE007B18FC /* Info.plist */,
 			);
 			path = EmpireCA;
@@ -123,6 +130,27 @@
 				DF2958801F59A4FE007B18FC /* Info.plist */,
 			);
 			path = EmpireCAUITests;
+			sourceTree = "<group>";
+		};
+		DF2958901F59A91D007B18FC /* World */ = {
+			isa = PBXGroup;
+			children = (
+				DF29588C1F59A7DA007B18FC /* People.swift */,
+				DF2958601F59A4FE007B18FC /* ViewController.swift */,
+				DF29588E1F59A7E4007B18FC /* Colonies.swift */,
+				DF2958921F59AA27007B18FC /* Bitmap.swift */,
+				DF2958941F5B0845007B18FC /* World.swift */,
+			);
+			name = World;
+			sourceTree = "<group>";
+		};
+		DF2958911F59A977007B18FC /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DF2958671F59A4FE007B18FC /* LaunchScreen.storyboard */,
+				DF2958621F59A4FE007B18FC /* Main.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF2958951F5B0845007B18FC /* World.swift in Sources */,
 				DF2958611F59A4FE007B18FC /* ViewController.swift in Sources */,
+				DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */,
+				DF29588D1F59A7DA007B18FC /* People.swift in Sources */,
 				DF29585F1F59A4FE007B18FC /* AppDelegate.swift in Sources */,
+				DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +546,7 @@
 				DF2958851F59A4FE007B18FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF2958861F59A4FE007B18FC /* Build configuration list for PBXNativeTarget "EmpireCATests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +555,7 @@
 				DF2958881F59A4FE007B18FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF2958891F59A4FE007B18FC /* Build configuration list for PBXNativeTarget "EmpireCAUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +564,7 @@
 				DF29588B1F59A4FE007B18FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
