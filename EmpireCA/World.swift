@@ -12,7 +12,7 @@ class World {
     var colonyNumber = 0
     let width = 1334
     let height = 750
-    let backgroundImage = UIImage(named: "world_map.png")
+    let backgroundImage = UIImage(named: "world_map.png")!
     var people: [[Person?]]
     
     init(colonyCount: Int) {
@@ -21,23 +21,24 @@ class World {
     }
     
     func startHumanity(view: UIView) {
-        let bitmap = Bitmap(width: width, height: height)
+        let bitmap = Bitmap.init(width: width, height: height)
         for id in 0..<colonyNumber {
             while true {
                 let x = Int(arc4random_uniform(UInt32(height)))
                 let y = Int(arc4random_uniform(UInt32(width)))
-                if (backgroundImage?.isLand(at: CGPoint(x: x, y: y)))! && personAt(x: x, y: y) == nil {
+                if backgroundImage.isLand(at: CGPoint(x: x, y: y)) && personAt(x: x, y: y) == nil {
                     let person = Person(colonyID: id, x: x, y: y)
-                    bitmap[x, y] = Bitmap.Pixel(r: 40, g: 0, b: 0, a: 255)
-                    let backgroundImage = UIImageView(frame: view.frame)
-                    backgroundImage.image = UIImage(cgImage: bitmap.cgImage())
-                    view.insertSubview(backgroundImage, aboveSubview: view)
-                    // somehow add the person to the data structure
-                    break // get out of the while loop
+                    bitmap[x, y] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+                    people[x][y] = person
+                    break // to get out of the while loop
                 }
             }
         }
-    }
+        let imageView = UIImageView(frame: view.frame)
+        imageView.image = UIImage(cgImage: bitmap.cgImage())
+        view.insertSubview(imageView, aboveSubview: view)
+        print("all done!")
+    } 
     
     
     func personAt(x: Int, y: Int) -> Person? {
