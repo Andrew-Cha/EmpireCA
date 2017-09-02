@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         createBackgroundImage()
-        World(colonyCount: 200).startHumanity(view: self.view)
+        World(colonyCount: 275826).startHumanity(view: self.view)
     }
 
     override func didReceiveMemoryWarning() {
