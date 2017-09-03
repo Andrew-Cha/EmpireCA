@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Person {
+class Person {
     var age = 0
     var strength = 0
     var reproductionValue = 0

@@ -29,9 +29,12 @@ class World {
             while true {
                 let x = Int.randomValue(lessThan: width)
                 let y = Int.randomValue(lessThan: height)
+                let randomR = Int.randomValue(lessThan: 256)
+                let randomG = Int.randomValue(lessThan: 256)
+                let randomB = Int.randomValue(lessThan: 256)
                 if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
                     let person = Person(colonyID: id, x: x, y: y)
-                    bitmap[x, y] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+                    bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
                     break // to get out of the while loop
                 }
