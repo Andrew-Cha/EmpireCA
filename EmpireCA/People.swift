@@ -18,8 +18,7 @@ class Person {
     var isDiseased = false
     var x: Int?
     var y: Int?
-    init(colonyID: Int, x: Int, y: Int) {
-        
+    init(colonyID: Int, x: Int, y: Int, world: World) {
         isAlive = true
         strength = Int(arc4random_uniform(20))
         reproductionValue = Int(arc4random_uniform(5))

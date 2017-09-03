@@ -16,6 +16,7 @@ class World {
     var people: [[Person?]]
     
     init(colonyCount: Int) {
+        Person(colonyID: 0, x: 0, y: 0, world: self)
         colonyNumber = colonyCount
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
@@ -33,7 +34,7 @@ class World {
                 let randomG = Int.randomValue(lessThan: 256)
                 let randomB = Int.randomValue(lessThan: 256)
                 if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
-                    let person = Person(colonyID: id, x: x, y: y)
+                    let person = Person(colonyID: id, x: x, y: y, world: self)
                     bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
                     break // to get out of the while loop
@@ -46,6 +47,12 @@ class World {
         print("all done!")
     }
     
+    func lifeTick() {
+        for person in people{
+            person
+        }
+        
+    }
     
     func personAt(x: Int, y: Int) -> Person? {
         if x > width, x < 0, y > height, y < 0 {

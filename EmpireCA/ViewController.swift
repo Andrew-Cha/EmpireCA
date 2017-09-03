@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         createBackgroundImage()
-        World(colonyCount: 275826).startHumanity(view: self.view)
+        World(colonyCount: 3).startHumanity(view: self.view)
         timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
         }
@@ -31,11 +31,7 @@ class ViewController: UIViewController {
     }
     
     func update(){
-        print("The current time of the timer is  \(timerinterval)")
-        timerinterval = timerinterval + 1
-        if timerinterval == 0 {
-            timerinterval = 0
-        }
+        World.lifeTick()
     }
 }
 
