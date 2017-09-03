@@ -51,10 +51,10 @@ class World {
         print("all done!")
     }
     
-    func lifeTick() {
+    func lifeTick(view: UIView) {
         for y in 0..<height {
             for x in 0..<width {
-                if people[x][y] != nil { //always true ? No idea why. I put a breakpoint at the randomR and it didnt trigger for over 30 seconds - supposed to trigger every 1/60th of a second, processor was at 100% usage pretty much and never executed :/
+                if people[x][y] != nil {
                     let randomR = Int.randomValue(lessThan: 256)
                     let randomG = Int.randomValue(lessThan: 256)
                     let randomB = Int.randomValue(lessThan: 256)
@@ -63,8 +63,14 @@ class World {
                         let person = Person(colonyID: 1, x: x + 1, y: y + 1, world: self)
                         bitmap?[x + 1, y + 1] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                         people[x + 1][y + 1] = person
+                        //for now its adding into one direction - into the topright corner, thats fine, Ill randomize it later
                         //add person into a random direction - up down left right, apply isLandAt and personAt == nil. If both pass, move old person there, new into the old location.
                     }
+                    let imageView = UIImageView(frame: view.frame) // I know I'll  be making millons of views here but the goal is to simply keep it here
+                    //so I can remember to find out how to clear the old bitmap, add a new one. If that's an efficient way of adding new pixels.
+                    imageView.image = UIImage(cgImage: (bitmap?.cgImage())!)
+                    view.insertSubview(imageView, aboveSubview: view)
+                    print("all done!")
                 }
             }
         }
