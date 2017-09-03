@@ -46,12 +46,15 @@ class World {
         view.insertSubview(imageView, aboveSubview: view)
         print("all done!")
     }
-    
-    func lifeTick() { //I assume I have to pass in the bitmap into here, as else I will be forced to create a new one and thats bad for memory usage.
+    //I assume I have to pass in the bitmap into here, as else I will be forced to create a new one and thats bad for memory usage.
+    func lifeTick() {
         for y in 0..<height {
             for x in 0..<width {
                 if people[x][y] != nil {
-                    (people[x][y]?.reproductionValue)! + 5 // doesnt add, I want to add +5 reproduction value at first here, error here. AND also I want to remove the !(I don't know how to force unwrap this.. earlier. Or maybe this is the correct place.
+                    // doesnt add, I want to add +5 reproduction value at first here.
+                    //Error here(Result of operator '+' is unused.)
+                    //AND also I want to remove the !(I don't know how to force unwrap this.. earlier. Or maybe this is the correct place.)
+                    (people[x][y]?.reproductionValue)! + 5
                     if people[x][y]?.reproductionValue == 20 {
                         //add person into a random direction - up down left right, apply isLandAt and personAt == nil. If both pass, move old person there, new into the old location.
                     }
