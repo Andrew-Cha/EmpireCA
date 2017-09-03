@@ -14,16 +14,20 @@ class World {
     let height = 720
     let backgroundImage = UIImage(named: "world_map.png")!
     var people: [[Person?]]
+    let bitmap: Bitmap?
+    var pixelData: CFData?
+    let imageData: UnsafePointer<UInt8>!
     
     init(colonyCount: Int) {
+        bitmap = Bitmap(width: width, height: height)
+        pixelData = backgroundImage.cgImage!.dataProvider!.data
+        imageData = CFDataGetBytePtr(pixelData)
         colonyNumber = colonyCount
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
     
     func startHumanity(view: UIView) {
-        let bitmap = Bitmap(width: width, height: height)
-        let pixelData = backgroundImage.cgImage!.dataProvider!.data
-        let imageData = CFDataGetBytePtr(pixelData)!
+        
         for id in 0..<colonyNumber {
             print(id)
             while true {
@@ -34,7 +38,7 @@ class World {
                 let randomB = Int.randomValue(lessThan: 256)
                 if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
                     let person = Person(colonyID: id, x: x, y: y, world: self)
-                    bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
+                    bitmap?[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
                     
                     break // to get out of the while loop
@@ -42,20 +46,23 @@ class World {
             }
         }
         let imageView = UIImageView(frame: view.frame)
-        imageView.image = UIImage(cgImage: bitmap.cgImage())
+        imageView.image = UIImage(cgImage: (bitmap?.cgImage())!)
         view.insertSubview(imageView, aboveSubview: view)
         print("all done!")
     }
-    //I assume I have to pass in the bitmap into here, as else I will be forced to create a new one and thats bad for memory usage.
+    
     func lifeTick() {
         for y in 0..<height {
             for x in 0..<width {
-                if people[x][y] != nil {
-                    // doesnt add, I want to add +5 reproduction value at first here.
-                    //Error here(Result of operator '+' is unused.)
-                    //AND also I want to remove the !(I don't know how to force unwrap this.. earlier. Or maybe this is the correct place.)
-                    (people[x][y]?.reproductionValue)! + 5
+                if people[x][y] != nil { //always true ? No idea why. I put a breakpoint at the randomR and it didnt trigger for over 30 seconds - supposed to trigger every 1/60th of a second, processor was at 100% usage pretty much and never executed :/
+                    let randomR = Int.randomValue(lessThan: 256)
+                    let randomG = Int.randomValue(lessThan: 256)
+                    let randomB = Int.randomValue(lessThan: 256)
+                    people[x][y]!.reproductionValue = people[x][y]!.reproductionValue + 5
                     if people[x][y]?.reproductionValue == 20 {
+                        let person = Person(colonyID: 1, x: x + 1, y: y + 1, world: self)
+                        bitmap?[x + 1, y + 1] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
+                        people[x + 1][y + 1] = person
                         //add person into a random direction - up down left right, apply isLandAt and personAt == nil. If both pass, move old person there, new into the old location.
                     }
                 }
