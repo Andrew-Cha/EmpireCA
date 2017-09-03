@@ -16,7 +16,6 @@ class World {
     var people: [[Person?]]
     
     init(colonyCount: Int) {
-        Person(colonyID: 0, x: 0, y: 0, world: self)
         colonyNumber = colonyCount
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
@@ -37,6 +36,7 @@ class World {
                     let person = Person(colonyID: id, x: x, y: y, world: self)
                     bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
+                    
                     break // to get out of the while loop
                 }
             }
@@ -47,26 +47,33 @@ class World {
         print("all done!")
     }
     
-    func lifeTick() {
-        for person in people{
-            person
-        }
-        
-    }
-    
-    func personAt(x: Int, y: Int) -> Person? {
-        if x > width, x < 0, y > height, y < 0 {
-            return nil
-        } else {
-            return people[x][y]
+    func lifeTick() { //I assume I have to pass in the bitmap into here, as else I will be forced to create a new one and thats bad for memory usage.
+        for y in 0..<height {
+            for x in 0..<width {
+                if people[x][y] != nil {
+                    (people[x][y]?.reproductionValue)! + 5 // doesnt add, I want to add +5 reproduction value at first here, error here. AND also I want to remove the !(I don't know how to force unwrap this.. earlier. Or maybe this is the correct place.
+                    if people[x][y]?.reproductionValue == 20 {
+                        //add person into a random direction - up down left right, apply isLandAt and personAt == nil. If both pass, move old person there, new into the old location.
+                    }
+                }
+            }
         }
     }
-    
-    func isLandAt(x: Int, y: Int, in data: UnsafePointer<UInt8>) -> Bool {
-        let pixelInfo = (width * y + x) * 4
-        let g = data[pixelInfo + 1]
-        return g > 100
+
+
+func personAt(x: Int, y: Int) -> Person? {
+    if x > width, x < 0, y > height, y < 0 {
+        return nil
+    } else {
+        return people[x][y]
     }
+}
+
+func isLandAt(x: Int, y: Int, in data: UnsafePointer<UInt8>) -> Bool {
+    let pixelInfo = (width * y + x) * 4
+    let g = data[pixelInfo + 1]
+    return g > 100
+}
 }
 
 extension Int {

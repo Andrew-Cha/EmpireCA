@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     }
     
     func update(){
-        World.lifeTick()
+        
     }
 }
 
