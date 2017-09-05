@@ -28,4 +28,26 @@ class Person {
             isDiseased = true
         }
     }
+    func update() {
+        if age > strength {
+            isAlive = false
+            return
+        }
+        if isDiseased {
+            let randomChanceToDie = Int(arc4random_uniform(100))
+            if randomChanceToDie == 100 {
+                isAlive = false
+                return
+            }
+        }
+        age += 1
+        reproductionValue += 1
+        let randomX = Int(arc4random_uniform(2))
+        let randomX2 = Int(arc4random_uniform(2))
+        let randomY = Int(arc4random_uniform(2))
+        let randomY2 = Int(arc4random_uniform(2))
+        x = randomX - randomX2
+        y = randomY - randomY2
+        
+    }
 }

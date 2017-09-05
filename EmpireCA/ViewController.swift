@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         createBackgroundImage()
-        World(colonyCount: 3).startHumanity(view: self.view)
+        World(colonyCount: 200).startHumanity(view: self.view)
         
         timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
@@ -32,7 +32,8 @@ class ViewController: UIViewController {
     }
     
     func update(){
-        World(colonyCount: 3).lifeTick(view: self.view)
+        World(colonyCount: 200).update()
+        //World(colonyCount: 3).lifeTick(view: self.view)
     }
 }
 

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "86BFB3C975C3B1BAF762868AF2426C6D4C4D9356",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FA0DB136936D773D22334A753A446523F41E633C" : 9223372036854775807,
+    "86BFB3C975C3B1BAF762868AF2426C6D4C4D9356" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F6784E6F-E27B-429A-B83C-01A904F7CE43",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FA0DB136936D773D22334A753A446523F41E633C" : "",
+    "86BFB3C975C3B1BAF762868AF2426C6D4C4D9356" : "EmpireCA\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EmpireCA",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EmpireCA.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AndriusC\/EmpireCA.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "86BFB3C975C3B1BAF762868AF2426C6D4C4D9356"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AndriusC\/EmpireCelularAutomation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FA0DB136936D773D22334A753A446523F41E633C"
+    }
+  ]
+}
