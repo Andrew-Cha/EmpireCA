@@ -16,8 +16,8 @@ class Person {
     var colonyID: Int?
     var isAlive = false
     var isDiseased = false
-    var x: Int?
-    var y: Int?
+    var x: Int = 0
+    var y: Int = 0
     init(colonyID: Int, x: Int, y: Int, world: World) {
         isAlive = true
         strength = Int(arc4random_uniform(20))
@@ -40,14 +40,14 @@ class Person {
                 return
             }
         }
-        age += 1
-        reproductionValue += 1
+        age = age + 1
+        reproductionValue = reproductionValue + 1
         let randomX = Int(arc4random_uniform(2))
         let randomX2 = Int(arc4random_uniform(2))
         let randomY = Int(arc4random_uniform(2))
         let randomY2 = Int(arc4random_uniform(2))
-        x = randomX - randomX2
-        y = randomY - randomY2
+        x = x + 1
+        y = y + 1
         
     }
 }

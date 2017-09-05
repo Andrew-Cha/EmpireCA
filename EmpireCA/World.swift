@@ -55,7 +55,7 @@ class World {
         for person in everyone {
             person.update()
             if person.reproductionValue == 1 {
-            bitmap?[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 255, b: 255, a: 255)
+            bitmap?[person.x, person.y] = Bitmap.Pixel(r: 255, g: 255, b: 255, a: 255)
             }
         }
     }
