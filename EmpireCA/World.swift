@@ -54,15 +54,25 @@ class World {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
             person.update()
-           // let randomX = Int.randomValue(lessThan: width)
-           // let randomY = Int.randomValue(lessThan: height)
-            if person.reproductionValue == 1 {
-            bitmap[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
-            print("Person with X \(person.x!) made, Y is \(person.y!)")
+            // let randomX = Int.randomValue(lessThan: width)
+            // let randomY = Int.randomValue(lessThan: height)
+            
+            
+            }
+        }
+    
+    func render() {
+        for x in 0...width - 1{
+            for y in 0...height - 1 {
+                if let person = people[x][y] {
+                    if person.reproductionValue == 1 {
+                    bitmap[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+                        print("Person with X \(person.x!) made, Y is \(person.y!)")
+                    }
+                }
             }
         }
     }
-    
     func personAt(x: Int, y: Int) -> Person? {
         if x > width, x < 0, y > height, y < 0 {
             return nil

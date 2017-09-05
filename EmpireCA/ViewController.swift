@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     
     func update() {
         world.update()
+        world.render()
         //World(colonyCount: 3).lifeTick(view: self.view)
     }
 }
