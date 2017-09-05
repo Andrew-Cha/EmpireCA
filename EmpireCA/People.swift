@@ -20,8 +20,7 @@ class Person {
     var y: Int = 0
     init(colonyID: Int, x: Int, y: Int, world: World) {
         isAlive = true
-        strength = Int(arc4random_uniform(20))
-        reproductionValue = Int(arc4random_uniform(5))
+        strength = Int(arc4random_uniform(100))
         isDiseased = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
@@ -41,7 +40,11 @@ class Person {
             }
         }
         age = age + 1
+        if reproductionValue == 0 {
         reproductionValue = reproductionValue + 1
+        } else {
+            reproductionValue = 0
+        }
         let randomX = Int(arc4random_uniform(2))
         let randomX2 = Int(arc4random_uniform(2))
         let randomY = Int(arc4random_uniform(2))

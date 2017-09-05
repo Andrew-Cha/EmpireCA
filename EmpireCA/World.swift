@@ -53,9 +53,12 @@ class World {
     func update() {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
+            let oldPerson = person
             person.update()
             if person.reproductionValue == 1 {
             bitmap?[person.x, person.y] = Bitmap.Pixel(r: 255, g: 255, b: 255, a: 255)
+            people[person.x - 1][person.y - 1] = oldPerson
+            print("Person with X \(person.x) made, Y is \(person.y)")
             }
         }
     }
