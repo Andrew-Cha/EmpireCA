@@ -11,14 +11,16 @@ import UIKit
 
 class Person {
     var age = 0
-    var strength = 0
-    var reproductionValue = 0
+    var strength: Int?
+    var reproductionValue: Int?
     var colonyID: Int?
-    var isAlive = false
-    var isDiseased = false
-    var x: Int = 0
-    var y: Int = 0
-    init(colonyID: Int, x: Int, y: Int, world: World) {
+    var isAlive: Bool?
+    var isDiseased: Bool?
+    var x: Int?
+    var y: Int?
+    init(colonyID: Int, xNew: Int, yNew: Int) {
+        x = xNew
+        y = yNew
         isAlive = true
         strength = Int(arc4random_uniform(100))
         isDiseased = false
@@ -28,11 +30,11 @@ class Person {
         }
     }
     func update() {
-        if age > strength {
+        if age > strength! {
             isAlive = false
             return
         }
-        if isDiseased {
+        if isDiseased! {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
                 isAlive = false
@@ -41,16 +43,24 @@ class Person {
         }
         age = age + 1
         if reproductionValue == 0 {
-        reproductionValue = reproductionValue + 1
+        reproductionValue = reproductionValue! + 1
         } else {
             reproductionValue = 0
         }
-        let randomX = Int(arc4random_uniform(2))
-        let randomX2 = Int(arc4random_uniform(2))
-        let randomY = Int(arc4random_uniform(2))
-        let randomY2 = Int(arc4random_uniform(2))
-        x = x + 1
-        y = y + 1
+   //     let randomX = Int(arc4random_uniform(2))
+     //   let randomX2 = Int(arc4random_uniform(2))
+       // let randomY = Int(arc4random_uniform(2))
+        //let randomY2 = Int(arc4random_uniform(2))
+        if x == 1280 {
+        x = x! - 1
+        } else {
+            x = x! + 1
+        }
+        if y == 720 {
+            y = y! - 1
+        } else {
+        y = y! + 1
+        }
         
     }
 }

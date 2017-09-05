@@ -37,8 +37,8 @@ class World {
                 let randomG = Int.randomValue(lessThan: 256)
                 let randomB = Int.randomValue(lessThan: 256)
                 if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
-                    let person = Person(colonyID: id, x: x, y: y, world: self)
-                   // bitmap?[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
+                    let person = Person(colonyID: id, xNew: x, yNew: y)
+                    bitmap?[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
                     break // to get out of the while loop
                 }
@@ -55,12 +55,12 @@ class World {
         for person in everyone {
             let oldPerson = person
             person.update()
-            let randomX = Int.randomValue(lessThan: width)
-            let randomY = Int.randomValue(lessThan: height)
+           // let randomX = Int.randomValue(lessThan: width)
+           // let randomY = Int.randomValue(lessThan: height)
             if person.reproductionValue == 1 {
-            bitmap?[randomX, randomY] = Bitmap.Pixel(r: 255, g: 255, b: 255, a: 255)
-            people[person.x - 1][person.y - 1] = oldPerson
-            print("Person with X \(person.x) made, Y is \(person.y)")
+            bitmap?[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+            people[person.x! - 1][person.y! - 1] = oldPerson
+            print("Person with X \(person.x!) made, Y is \(person.y!)")
             }
         }
     }
