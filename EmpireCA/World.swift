@@ -14,13 +14,13 @@ class World {
     let height = 720
     let backgroundImage = UIImage(named: "world_map.png")!
     var people: [[Person?]]
-    let bitmap: Bitmap?
-    var pixelData: CFData?
+    let bitmap: Bitmap
+    var pixelData: CFData
     let imageData: UnsafePointer<UInt8>!
     
     init(colonyCount: Int) {
         bitmap = Bitmap(width: width, height: height)
-        pixelData = backgroundImage.cgImage!.dataProvider!.data
+        pixelData = backgroundImage.cgImage!.dataProvider!.data!
         imageData = CFDataGetBytePtr(pixelData)
         colonyNumber = colonyCount
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
@@ -38,14 +38,14 @@ class World {
                 let randomB = Int.randomValue(lessThan: 256)
                 if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
                     let person = Person(colonyID: id, xNew: x, yNew: y)
-                    bitmap?[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
+                    bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                     people[x][y] = person
                     break // to get out of the while loop
                 }
             }
         }
         let imageView = UIImageView(frame: view.frame)
-        imageView.image = UIImage(cgImage: (bitmap?.cgImage())!)
+        imageView.image = UIImage(cgImage: (bitmap.cgImage()))
         view.insertSubview(imageView, aboveSubview: view)
         print("all done!")
     }
@@ -53,13 +53,11 @@ class World {
     func update() {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
-            let oldPerson = person
             person.update()
            // let randomX = Int.randomValue(lessThan: width)
            // let randomY = Int.randomValue(lessThan: height)
             if person.reproductionValue == 1 {
-            bitmap?[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
-            people[person.x! - 1][person.y! - 1] = oldPerson
+            bitmap[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
             print("Person with X \(person.x!) made, Y is \(person.y!)")
             }
         }
