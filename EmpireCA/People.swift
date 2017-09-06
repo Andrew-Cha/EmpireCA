@@ -29,7 +29,7 @@ class Person {
             isDiseased = true
         }
     }
-    func update() {
+    func update(world: World, imageData: UnsafePointer<UInt8>!) {
         if age > strength! {
             isAlive = false
             return
@@ -47,20 +47,18 @@ class Person {
         } else {
             reproductionValue = 0
         }
-   //     let randomX = Int(arc4random_uniform(2))
-     //   let randomX2 = Int(arc4random_uniform(2))
-       // let randomY = Int(arc4random_uniform(2))
-        //let randomY2 = Int(arc4random_uniform(2))
-        if x == 1280 {
-        x = x! - 1
-        } else {
-            x = x! + 1
+        let randomX = Int(arc4random_uniform(2))
+        let randomX2 = Int(arc4random_uniform(2))
+        let randomY = Int(arc4random_uniform(2))
+        let randomY2 = Int(arc4random_uniform(2))
+        let generatedX = x! + (randomX - randomX2)
+        let generatedY = y! + (randomY - randomY2)
+        
+        if world.isLandAt(x: generatedX, y: generatedY, in: imageData) && world.personAt(x: generatedX, y: generatedY) == nil {
+            x = generatedX
+            y = generatedY
         }
-        if y == 720 {
-            y = y! - 1
-        } else {
-        y = y! + 1
-        }
+
         
     }
 }
