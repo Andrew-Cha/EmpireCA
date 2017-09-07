@@ -18,6 +18,7 @@ class Person {
     var isDiseased: Bool
     var x: Int
     var y: Int
+    var canMakeChild: Bool
     init(newColonyID: Int, xNew: Int, yNew: Int) {
         colonyID = newColonyID
         reproductionValue = 0
@@ -26,6 +27,7 @@ class Person {
         isAlive = true
         strength = Int(arc4random_uniform(100))
         isDiseased = false
+        canMakeChild = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
             isDiseased = true
@@ -40,13 +42,8 @@ class Person {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
                 isAlive = false
-              //  return
+                //  return
             }
-        }
-        age = age + 1
-        reproductionValue += 1
-        if reproductionValue == 2{
-            reproductionValue = 0
         }
         let randomX = Int(arc4random_uniform(2))
         let randomX2 = Int(arc4random_uniform(2))
@@ -55,11 +52,23 @@ class Person {
         let generatedX = x + (randomX - randomX2)
         let generatedY = y + (randomY - randomY2)
         
-        if world.isLandAt(x: generatedX, y: generatedY) || world.personAt(x: generatedX, y: generatedY) == nil {
-            x = generatedX
-            y = generatedY
+        age = age + 1
+        reproductionValue += 1
+        if reproductionValue < 2 {
+            canMakeChild = false
         }
-
-        
+        if reproductionValue >= 2 {
+            if world.isLandAt(x: generatedX, y: generatedY) || world.personAt(x: generatedX, y: generatedY) != nil {
+                canMakeChild = true
+                x = generatedX
+                y = generatedY
+                reproductionValue = 0
+            }
+        }
     }
+    
+    
+    
+    
+    
 }

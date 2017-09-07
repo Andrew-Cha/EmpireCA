@@ -34,12 +34,14 @@ class World {
             while true {
                 let x = Int.randomValue(lessThan: width)
                 let y = Int.randomValue(lessThan: height)
-                //let randomR = Int.randomValue(lessThan: 256)
-                //let randomG = Int.randomValue(lessThan: 256)
-                //let randomB = Int.randomValue(lessThan: 256)
+                
                 if isLandAt(x: x, y: y) && personAt(x: x, y: y) == nil {
                     let person = Person(newColonyID: id, xNew: x, yNew: y)
+                    let randomR: UInt8 = UInt8(0 + (person.colonyID * 20) + 125)
+                    let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
+                    let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
                     people[x][y] = person
+                    bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                     break // to get out of the while loop
                 }
             }
@@ -67,8 +69,11 @@ class World {
             for y in 0...height - 1 {
                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
-                    if person.reproductionValue == 1 {
-                    bitmap[person.x, person.y] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+                    if person.canMakeChild == true {
+                        let randomR: UInt8 = UInt8(0 + (person.colonyID * 20) + 125)
+                        let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
+                        let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
+                    bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                     people[x][y] = person
                         print("Person with X \(person.x) made, Y is \(person.y)")
                     }
