@@ -8,6 +8,7 @@
 
 
 // TODO List - note that this isn't written in a priority manner.
+// FIX THE TIMER! (this is important, others are just ideas)
 // 1) Make the pixel the new person is moving to - 1 cleared. THEN draw onto as it makes this weird color.
 // 2) Make people die
 // 3) Make people check around 4 directions if movement possible, if not then simply wait until there is a spot. (store the max reproduction value as a variable)
