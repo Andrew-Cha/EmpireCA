@@ -6,11 +6,19 @@
 //  Copyright © 2017 Andrius. All rights reserved.
 //
 
+
+// TODO List - note that this isn't written in a priority manner.
+// 1) Make the pixel the new person is moving to - 1 cleared. THEN draw onto as it makes this weird color.
+// 2) Make people die
+// 3) Make people check around 4 directions if movement possible, if not then simply wait until there is a spot. (store the max reproduction value as a variable)
+// and if it reaches that and cant move - just wait as I said.
+// 4) Recheck color checking, people are moving onto the ocean
+// 5) Fighting next?
 import UIKit
 var timer: Timer!
 var timerinterval = 0
 class ViewController: UIViewController {
-    var world = World(colonyCount: 200)
+    var world = World(colonyCount: 100)
     override func viewDidLoad() {
         super.viewDidLoad()
         

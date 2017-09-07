@@ -67,7 +67,7 @@ class World {
             for y in 0...height - 1 {
                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
-                    if person.reproductionValue == 20 {
+                    if person.reproductionValue == 1 {
                     bitmap[person.x, person.y] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
                     people[x][y] = person
                         print("Person with X \(person.x) made, Y is \(person.y)")
