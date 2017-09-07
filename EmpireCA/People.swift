@@ -44,11 +44,7 @@ class Person {
             }
         }
         age = age + 1
-        if reproductionValue == 0 {
-        reproductionValue = reproductionValue + 1
-        } else {
-            reproductionValue = 0
-        }
+        reproductionValue += 1
         let randomX = Int(arc4random_uniform(2))
         let randomX2 = Int(arc4random_uniform(2))
         let randomY = Int(arc4random_uniform(2))
