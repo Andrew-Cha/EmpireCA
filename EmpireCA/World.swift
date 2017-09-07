@@ -37,8 +37,8 @@ class World {
                 //let randomR = Int.randomValue(lessThan: 256)
                 //let randomG = Int.randomValue(lessThan: 256)
                 //let randomB = Int.randomValue(lessThan: 256)
-                if isLandAt(x: x, y: y, in: imageData) && personAt(x: x, y: y) == nil {
-                    let person = Person(colonyID: id, xNew: x, yNew: y)
+                if isLandAt(x: x, y: y) && personAt(x: x, y: y) == nil {
+                    let person = Person(newColonyID: id, xNew: x, yNew: y)
                     people[x][y] = person
                     break // to get out of the while loop
                 }
@@ -68,16 +68,16 @@ class World {
                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
                     if person.reproductionValue == 1 {
-                    bitmap[person.x!, person.y!] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
+                    bitmap[person.x, person.y] = Bitmap.Pixel(r: 255, g: 0, b: 0, a: 255)
                     people[x][y] = person
-                        print("Person with X \(person.x!) made, Y is \(person.y!)")
+                        print("Person with X \(person.x) made, Y is \(person.y)")
                     }
                 }
             }
         }
         imageViewStored?.image = UIImage(cgImage: (bitmap.cgImage()))
         //view.insertSubview(imageView, aboveSubview: view)
-        print("all done!")
+     //   print("all done!")
     }
     func personAt(x: Int, y: Int) -> Person? {
         if x > width, x < 0, y > height, y < 0 {
@@ -87,9 +87,9 @@ class World {
         }
     }
     
-    func isLandAt(x: Int, y: Int, in data: UnsafePointer<UInt8>) -> Bool {
+    func isLandAt(x: Int, y: Int) -> Bool {
         let pixelInfo = (width * y + x) * 4
-        let g = data[pixelInfo + 1]
+        let g = imageData[pixelInfo + 1]
         return g > 100
     }
 }
