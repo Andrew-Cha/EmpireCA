@@ -56,11 +56,11 @@ class World {
     func update() {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
+            let savedX: Int = person.x
+            let savedY: Int = person.y
             person.update(world: self, imageData: imageData)
-            // let randomX = Int.randomValue(lessThan: width)
-            // let randomY = Int.randomValue(lessThan: height)
-            
-            
+            let child = Person(childOf: person, xNew: savedX, yNew: savedY, newColonyID: person.colonyID)
+            people[savedX][savedY] = child //problem is here
             }
         }
     
@@ -70,11 +70,15 @@ class World {
                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
                     if person.canMakeChild == true {
+                       // let oldPerson: Person = person.copy(of: person)
                         let randomR: UInt8 = UInt8(0 + (person.colonyID * 20) + 125)
                         let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
                         let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
+                    bitmap[person.x, person.y] = Bitmap.Pixel.clear
+                   // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                     bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                     people[x][y] = person
+                   // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
                         print("Person with X \(person.x) made, Y is \(person.y)")
                     }
                 }

@@ -17,6 +17,7 @@
 // 5) Fighting next?
 // 6) When updating a persons coordinates, if they cant move DO NOT update them!
 // 7) Add unique colors for the colony
+// 8) Make so pixels cant cross max view frame
 import UIKit
 var timer: Timer!
 var timerinterval = 0
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         createBackgroundImage()
        world.startHumanity(view: self.view)
         
-        timer = .scheduledTimer(withTimeInterval: 1/2, repeats: true) { (timer) in
+        timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
         }
     }
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
     
     func createBackgroundImage() {
         let backgroundImage = UIImageView(frame: view.frame)
-        backgroundImage.image = UIImage(named: "world_map_full.png")
+        backgroundImage.image = UIImage(named: "world_map.png")
         self.view.insertSubview(backgroundImage, at: 0)
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class Person {
     var age = 0
     var strength: Int
@@ -19,6 +20,7 @@ class Person {
     var x: Int
     var y: Int
     var canMakeChild: Bool
+    
     init(newColonyID: Int, xNew: Int, yNew: Int) {
         colonyID = newColonyID
         reproductionValue = 0
@@ -33,6 +35,22 @@ class Person {
             isDiseased = true
         }
     }
+    
+    init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
+        colonyID = newColonyID
+        reproductionValue = 0
+        x = xNew
+        y = yNew
+        isAlive = true
+        strength = Int(arc4random_uniform(100))
+        isDiseased = false
+        canMakeChild = false
+        let diseasedChance = arc4random_uniform(100)
+        if diseasedChance == 99{
+            isDiseased = true
+        }
+    }
+
     func update(world: World, imageData: UnsafePointer<UInt8>!) {
         if age > strength {
             isAlive = false
@@ -52,6 +70,7 @@ class Person {
         let generatedX = x + (randomX - randomX2)
         let generatedY = y + (randomY - randomY2)
         
+
         age = age + 1
         reproductionValue += 1
         if reproductionValue < 2 {
@@ -66,9 +85,4 @@ class Person {
             }
         }
     }
-    
-    
-    
-    
-    
 }
