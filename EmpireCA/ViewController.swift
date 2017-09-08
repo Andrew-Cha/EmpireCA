@@ -8,15 +8,13 @@
 
 
 // TODO List - note that this isn't written in a priority manner.
-// 2) Make people die
 // 3) Make people check around 4 directions if movement possible, if not then simply wait until there is a spot. (store the max reproduction value as a variable)
+// same as #9
 // and if it reaches that and cant move - just wait as I said.
-// 5) Fighting next?
-// 6) When updating a persons coordinates, if they cant move DO NOT update them!
-// 7) Add unique colors for the colony
+// 7) Add unique colors for the colony instaed of generating them like a goober
 // 8) Make so pixels cant cross max view frame
 // 9) If cant move in one direction, check the other 3.
-// 10) When a fight is won the defendant moves into the attackers position AND makes a baby instantly.
+// 10) When a fight is won the defendant moves into the attackers position AND makes a baby instantly. Kinda done? Recheck!
 import UIKit
 var timer: Timer!
 var timerinterval = 0
