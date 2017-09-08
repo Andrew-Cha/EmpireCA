@@ -8,8 +8,6 @@
 
 
 // TODO List - note that this isn't written in a priority manner.
-// FIX THE TIMER! (this is important, others are just ideas)
-// 1) Make the pixel the new person is moving to - 1 cleared. THEN draw onto as it makes this weird color.
 // 2) Make people die
 // 3) Make people check around 4 directions if movement possible, if not then simply wait until there is a spot. (store the max reproduction value as a variable)
 // and if it reaches that and cant move - just wait as I said.
@@ -17,7 +15,8 @@
 // 6) When updating a persons coordinates, if they cant move DO NOT update them!
 // 7) Add unique colors for the colony
 // 8) Make so pixels cant cross max view frame
-
+// 9) If cant move in one direction, check the other 3.
+// 10) When a fight is won the defendant moves into the attackers position AND makes a baby instantly.
 import UIKit
 var timer: Timer!
 var timerinterval = 0
@@ -29,7 +28,7 @@ class ViewController: UIViewController {
         createBackgroundImage()
         world.startHumanity(view: self.view)
         
-        timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
+        timer = .scheduledTimer(withTimeInterval: 1/180, repeats: true) { (timer) in
             self.update()
         }
     }

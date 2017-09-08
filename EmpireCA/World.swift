@@ -77,7 +77,8 @@ class World {
                         bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                         // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
                     } else {
-                       // person.kill()
+                        people[x][y] = nil
+                        //person.kill()
                         bitmap[x, y] = .clear
                     }
                 }
