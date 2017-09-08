@@ -76,8 +76,6 @@ class World {
                         // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                         bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                         // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
-                        print("Person with X \(person.x) made, Y is \(person.y)")
-                        
                     } else {
                        // person.kill()
                         bitmap[x, y] = .clear
