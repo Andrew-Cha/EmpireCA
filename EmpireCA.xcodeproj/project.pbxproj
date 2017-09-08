@@ -135,10 +135,10 @@
 		DF2958901F59A91D007B18FC /* World */ = {
 			isa = PBXGroup;
 			children = (
+				DF2958921F59AA27007B18FC /* Bitmap.swift */,
+				DF29588E1F59A7E4007B18FC /* Colonies.swift */,
 				DF29588C1F59A7DA007B18FC /* People.swift */,
 				DF2958601F59A4FE007B18FC /* ViewController.swift */,
-				DF29588E1F59A7E4007B18FC /* Colonies.swift */,
-				DF2958921F59AA27007B18FC /* Bitmap.swift */,
 				DF2958941F5B0845007B18FC /* World.swift */,
 			);
 			name = World;

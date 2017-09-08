@@ -29,7 +29,7 @@ class World {
     
     func startHumanity(view: UIView) {
         
-        for id in 0..<colonyNumber {
+        for id in 1..<colonyNumber {
             print(id)
             while true {
                 let x = Int.randomValue(lessThan: width)
@@ -56,37 +56,38 @@ class World {
     func update() {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
-            let savedX: Int = person.x
-            let savedY: Int = person.y
-            person.update(world: self, imageData: imageData)
-            let child = Person(childOf: person, xNew: savedX, yNew: savedY, newColonyID: person.colonyID)
-            people[savedX][savedY] = child //problem is here
-            }
+            person.update(world: self)
+            // let child: Person
+            //child = person.makeChild(childOf: person, xNew: savedX, yNew: savedY, newColonyID: person.colonyID)
         }
+    }
     
     func render() {
-        for x in 0...width - 1{
-            for y in 0...height - 1 {
-               // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
+        for x in 0..<width {
+            for y in 0..<height {
+                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
-                    if person.canMakeChild == true {
-                       // let oldPerson: Person = person.copy(of: person)
-                        let randomR: UInt8 = UInt8(0 + (person.colonyID * 20) + 125)
-                        let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
-                        let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
-                    bitmap[person.x, person.y] = Bitmap.Pixel.clear
-                   // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
-                    bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
-                    people[x][y] = person
-                   // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
+                    if person.isAlive == true {
+                        // let oldPerson: Person = person.copy(of: person)
+                        let randomR = UInt8(0 + (person.colonyID * 20) + 125)
+                        let randomG = UInt8(0 + (person.colonyID * 20) + 120)
+                        let randomB = UInt8(0 + (person.colonyID * 20) + 110)
+                        bitmap[person.x, person.y] = Bitmap.Pixel.clear
+                        // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
+                        bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
+                        // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
                         print("Person with X \(person.x) made, Y is \(person.y)")
+                        
+                    } else {
+                       // person.kill()
+                        bitmap[x, y] = .clear
                     }
                 }
             }
         }
         imageViewStored?.image = UIImage(cgImage: (bitmap.cgImage()))
         //view.insertSubview(imageView, aboveSubview: view)
-     //   print("all done!")
+        //   print("all done!")
     }
     func personAt(x: Int, y: Int) -> Person? {
         if x > width, x < 0, y > height, y < 0 {

@@ -42,7 +42,7 @@ class Person {
         x = xNew
         y = yNew
         isAlive = true
-        strength = Int(arc4random_uniform(100))
+        strength = parent.strength + .randomValue(lessThan: 20)
         isDiseased = false
         canMakeChild = false
         let diseasedChance = arc4random_uniform(100)
@@ -50,16 +50,41 @@ class Person {
             isDiseased = true
         }
     }
-
-    func update(world: World, imageData: UnsafePointer<UInt8>!) {
+    
+    func makeChild(childOf: Person, xNew: Int, yNew: Int, newColonyID: Int) {
+        let child = childOf
+        child.age = 0
+        child.reproductionValue = 0
+        child.isAlive = true
+        child.isDiseased = false
+        child.canMakeChild = false
+        child.strength = childOf.strength
+        child.x = xNew
+        child.y = yNew
+    }
+    func kill() {
+        age = 0
+        reproductionValue = 0
+        isAlive = false
+        isDiseased = false
+        canMakeChild = false
+        strength = 0
+        x = 0
+        y = 0
+        colonyID = 0
+    }
+    func update(world: World) {
+        
+        
+        
         if age > strength {
-            isAlive = false
+            //   isAlive = false
             //return
         }
         if isDiseased {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
-                isAlive = false
+                //  isAlive = false
                 //  return
             }
         }
@@ -70,7 +95,7 @@ class Person {
         let generatedX = x + (randomX - randomX2)
         let generatedY = y + (randomY - randomY2)
         
-
+        
         age = age + 1
         reproductionValue += 1
         if reproductionValue < 2 {
@@ -79,10 +104,15 @@ class Person {
         if reproductionValue >= 2 {
             if world.isLandAt(x: generatedX, y: generatedY) || world.personAt(x: generatedX, y: generatedY) != nil {
                 canMakeChild = true
+                let child = Person(childOf: self, xNew: self.x, yNew: self.y, newColonyID: self.colonyID)
+                world.people[child.x][child.y] = child
+    
                 x = generatedX
                 y = generatedY
                 reproductionValue = 0
+                world.people[x][y] = self
             }
+            
         }
     }
 }
