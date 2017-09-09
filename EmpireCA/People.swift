@@ -51,35 +51,6 @@ class Person {
         }
     }
     
-    func leftDirection(changee: Person) -> Int{
-        let leftDirection = changee.x - 1
-        return leftDirection
-    }
-    func rightDirection(changee: Person) -> Int {
-        let rightDirection = changee.x + 1
-        return rightDirection
-    }
-    func upDirection(changee: Person) -> Int{
-        let upDirection = changee.y + 1
-        return upDirection
-    }
-    func downDirection(changee: Person) -> Int{
-        let downDirection = changee.y - 1
-        return downDirection
-    }
-    
-    func makeChild(childOf: Person, xNew: Int, yNew: Int, newColonyID: Int) {
-        let child = childOf
-        child.age = 0
-        child.reproductionValue = 0
-        child.isAlive = true
-        child.isDiseased = false
-        child.canMakeChild = false
-        child.strength = childOf.strength + .randomValue(lessThan: 200)
-        child.x = xNew
-        child.y = yNew
-    }
-    
     func fightDefended(defendant: Person, attacker: Person) -> Bool {
         if defendant.strength >= attacker.strength {
             return true
@@ -90,12 +61,14 @@ class Person {
     func update(world: World) {
         if age > strength {
             isAlive = false
+            world.people[x][y] = nil
             return
         }
         if isDiseased {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
                 isAlive = false
+                world.people[x][y] = nil
                 return
             }
         }
@@ -105,28 +78,6 @@ class Person {
         let randomY2 = Int(arc4random_uniform(2))
         let generatedX = x + (randomX - randomX2)
         let generatedY = y + (randomY - randomY2)
-        /*
-         var generatedNumbersInput = [0,1,2,3]
-         generatedNumbersInput.shuffle()
-         generatedNumbersInput = generatedNumbersInput.shuffled()
-         var generatedX = 0
-         var generatedY = 0
-         */
-        //here I should cycle through the array of numbers above in an incremented order, make a variable and if generatedNumbersInput.first isnt good then simply +1 the variable and try the second array element if it passes - continue baby creation or fighting.
-        
-        /* switch generatedNumbersInput.first{
-         case 0:
-         generatedX = leftDirection(changee: self)
-         case 1:
-         generatedX = rightDirection(changee: self)
-         case 2:
-         generatedY = downDirection(changee: self)
-         case 3:
-         generatedY = upDirection(changee: self)
-         default:
-         print("ded end")
-         }
-         */
         
         age = age + 1
         reproductionValue += 1

@@ -72,13 +72,10 @@ class World {
                         let randomR = UInt8(0 + (person.colonyID * 20) + 125)
                         let randomG = UInt8(0 + (person.colonyID * 20) + 120)
                         let randomB = UInt8(0 + (person.colonyID * 20) + 110)
-                        bitmap[person.x, person.y] = Bitmap.Pixel.clear
                         // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                         bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                         // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
                     } else {
-                        people[x][y] = nil
-                        //person.kill()
                         bitmap[x, y] = .clear
                     }
                 }
