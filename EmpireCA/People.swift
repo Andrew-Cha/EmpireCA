@@ -19,7 +19,6 @@ class Person {
     var isDiseased: Bool
     var x: Int
     var y: Int
-    var canMakeChild: Bool
     var world: World
     
     init(newColonyID: Int, xNew: Int, yNew: Int, worldPassed: World) {
@@ -31,7 +30,6 @@ class Person {
         isAlive = true
         strength = Int(arc4random_uniform(100))
         isDiseased = false
-        canMakeChild = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
             isDiseased = true
@@ -59,7 +57,6 @@ class Person {
         }
         
         isDiseased = false
-        canMakeChild = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
             isDiseased = true
@@ -76,13 +73,13 @@ class Person {
     
     func update() {
         if age > strength {
-            self.die()
+            die()
             return
         }
         if isDiseased {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
-                self.die()
+                die()
                 return
             }
         }
@@ -96,31 +93,28 @@ class Person {
         age = age + 1
         reproductionValue += 1
         if reproductionValue < 2 {
-            canMakeChild = false
+            return
         }
         if reproductionValue >= 2 {
             
             if world.personAt(x: generatedX, y: generatedY) != nil {
                 let defendingPerson = world.personAt(x: generatedX, y: generatedY)
-                if defendingPerson?.colonyID != self.colonyID {
+                if defendingPerson?.colonyID != colonyID {
                     if fightDefended(defendant: defendingPerson!, attacker: self) {
                         self.die()
+                        return
                     } else {
-                        canMakeChild = true
-                        let child = Person(childOf: self, xNew: self.x, yNew: self.y, newColonyID: self.colonyID)
+                        let child = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
                         world.people[child.x][child.y] = child
                         
                         x = generatedX
                         y = generatedY
                         reproductionValue = 0
                         world.people[x][y] = self
-                        
                     }
                 }
             } else if world.isLandAt(x: generatedX, y: generatedY) {
-                
-                canMakeChild = true
-                let child = Person(childOf: self, xNew: self.x, yNew: self.y, newColonyID: self.colonyID)
+                let child = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
                 world.people[child.x][child.y] = child
                 
                 x = generatedX
@@ -133,8 +127,8 @@ class Person {
     }
     
     func die() {
-        self.isAlive = false
-        world.people[self.x][self.y] = nil
+        isAlive = false
+        world.people[x][y] = nil
     }
 }
 extension MutableCollection where Indices.Iterator.Element == Index {
