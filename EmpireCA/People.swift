@@ -12,7 +12,7 @@ import UIKit
 
 class Person {
     var age = 0
-    var strength: Int
+    var strength: Double
     var reproductionValue: Int
     var colonyID: Int
     var isAlive: Bool
@@ -28,7 +28,7 @@ class Person {
         x = xNew
         y = yNew
         isAlive = true
-        strength = Int(arc4random_uniform(100))
+        strength = Double(arc4random_uniform(100))
         isDiseased = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
@@ -45,20 +45,20 @@ class Person {
         isAlive = true
         let randomNumberForStrength = arc4random_uniform(100)
         if randomNumberForStrength == 99 {
-        strength = parent.strength + 20
+        strength = parent.strength * 0.7
         } else {
             strength = parent.strength
         }
         
         if randomNumberForStrength > 80 {
-            strength = parent.strength + 5
+            strength = parent.strength * 0.9
         } else {
            strength = parent.strength
         }
         
         isDiseased = false
         let diseasedChance = arc4random_uniform(100)
-        if diseasedChance == 99{
+        if diseasedChance > 80{
             isDiseased = true
         }
     }
@@ -72,7 +72,7 @@ class Person {
     }
     
     func update() {
-        if age > strength {
+        if age > Int(strength) {
             die()
             return
         }
