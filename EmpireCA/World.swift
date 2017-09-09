@@ -36,7 +36,7 @@ class World {
                 let y = Int.randomValue(lessThan: height)
                 
                 if isLandAt(x: x, y: y) && personAt(x: x, y: y) == nil {
-                    let person = Person(newColonyID: id, xNew: x, yNew: y)
+                    let person = Person(newColonyID: id, xNew: x, yNew: y, worldPassed: self)
                     let randomR: UInt8 = UInt8(0 + (person.colonyID * 20) + 125)
                     let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
                     let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
@@ -56,7 +56,7 @@ class World {
     func update() {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
-            person.update(world: self)
+            person.update()
             // let child: Person
             //child = person.makeChild(childOf: person, xNew: savedX, yNew: savedY, newColonyID: person.colonyID)
         }
@@ -85,6 +85,8 @@ class World {
         //view.insertSubview(imageView, aboveSubview: view)
         //   print("all done!")
     }
+    
+    
     func personAt(x: Int, y: Int) -> Person? {
         if x > width, x < 0, y > height, y < 0 {
             return nil
