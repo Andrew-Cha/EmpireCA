@@ -101,7 +101,7 @@ class Person {
         age = age + 1
         reproductionValue += 1
         
-        if reproductionValue < 10 {
+        if reproductionValue < 20 {
             if world.personAt(x: generatedX, y: generatedY) != nil {
                 let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson?.colonyID != colonyID {
@@ -123,7 +123,7 @@ class Person {
             }
         }
         
-        if reproductionValue >= 10 {
+        if reproductionValue >= 20 {
             if world.personAt(x: generatedX, y: generatedY) != nil {
                 let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson?.colonyID != colonyID {

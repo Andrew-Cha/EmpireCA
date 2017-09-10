@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let colors: [UIColor] = [.red, .blue, .brown]
+
 
 struct Colony {
     var citizens: [Person] = []

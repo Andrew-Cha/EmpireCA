@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import UIKit
 
 public struct Pixel {
     public typealias Component = UInt8
@@ -63,7 +64,7 @@ public struct Pixel {
      - Parameter blue: the blue component, from 0 to 1
      - Parameter alpha: the alpha component, from 0 to 1 — defaults to 1 (opaque)
      */
-    public init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) {
+    public init(fRed red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) {
         self.init(cRed:    red.clamped(),
                   green: green.clamped(),
                   blue:   blue.clamped(),
@@ -117,5 +118,17 @@ extension FloatingPoint {
 extension CGFloat {
     var asPixelComponent: Pixel.Component {
         return Pixel.Component((255 * self).rounded())
+    }
+}
+
+extension Pixel {
+    public init(_ uiColor: UIColor) {
+        var (r, g, b, a): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+        uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        self.init(fRed: r, green: g, blue: b, alpha: a)
+    }
+    
+    public init(_ cgColor: CGColor) {
+        self.init(UIColor(cgColor: cgColor))
     }
 }
