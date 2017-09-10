@@ -9,10 +9,15 @@
 import Foundation
 import UIKit
 
-
+let strengthDecreaseChance = RandomChance(of: 0.25)
+let diseaseCureChance = RandomChance(of: 0.2)
+let diseaseHeredityChance = RandomChance(of: 0.2)
+let diseaseMutationChance = RandomChance(of: 0.0001)
+let diseaseSpreadChance = RandomChance(of: 0.5)
+let reproductionThreshold = 20
 class Person {
     var age = 0
-    var strength: Double
+    var strength: Int
     var reproductionValue: Int
     var colonyID: Int
     var isAlive: Bool
@@ -28,39 +33,25 @@ class Person {
         self.x = xNew
         self.y = yNew
         self.isAlive = true
-        self.strength = Double(arc4random_uniform(100))
+        self.strength = Int(arc4random_uniform(100))
         self.isDiseased = false
-        let diseasedChance = arc4random_uniform(100)
-        if diseasedChance == 99{
-            self.isDiseased = true
-        }
     }
     
-    init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
+   @discardableResult init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
         self.world = parent.world
-        colonyID = newColonyID
-        reproductionValue = 0
-        x = xNew
-        y = yNew
+        self.x = parent.x
+        self.y = parent.y
+        self.colonyID = parent.colonyID
+        self.strength = parent.strength
+        self.reproductionValue = .randomValue(lessThan: reproductionThreshold)
         isAlive = true
-        let randomNumberForStrength = arc4random_uniform(100)
-        if randomNumberForStrength == 99 {
-            strength = parent.strength * 0.7
-        } else {
-            strength = parent.strength
-        }
         
-        if randomNumberForStrength > 80 {
-            strength = parent.strength * 0.9
-        } else {
-            strength = parent.strength
+        let diseasedChance = parent.isDiseased ? diseaseHeredityChance : diseaseMutationChance
+        isDiseased = diseasedChance.isFulfilled()
+        if strengthDecreaseChance.isFulfilled(){
+            strength = .randomValue(lessThan: strength)
         }
-        
-        isDiseased = false
-        let diseasedChance = arc4random_uniform(100)
-        if diseasedChance > 80{
-            isDiseased = true
-        }
+        world.people[self.x][self.y] = self
     }
     
     func die() {
@@ -91,11 +82,7 @@ class Person {
         }
         
         if isDiseased {
-            let randomChanceToDie = Int(arc4random_uniform(100))
-            if randomChanceToDie == 100 {
-                die()
-                return
-            }
+        strength -= 1
         }
         
         let randomX = Int(arc4random_uniform(2))
@@ -108,7 +95,7 @@ class Person {
         age = age + 1
         reproductionValue += 1
         
-        if reproductionValue < 20 {
+        if reproductionValue < reproductionThreshold {
             if let defendingPerson = world.personAt(x: generatedX, y: generatedY) {
                 // let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson.colonyID != colonyID {
@@ -119,6 +106,13 @@ class Person {
                         defendingPerson.die()
                         moveTo(x: generatedX, y: generatedY)
                     }
+                } else {
+                    if defendingPerson.isDiseased == false{
+                       let chanceToSpreadDisease = Int.randomValue(lessThan: 99)
+                        if chanceToSpreadDisease > 50 {
+                            defendingPerson.isDiseased = true
+                        }
+                    }
                 }
                 
             } else if world.isLandAt(x: generatedX, y: generatedY) {
@@ -127,7 +121,7 @@ class Person {
             }
         }
         
-        if reproductionValue >= 20 {
+        if reproductionValue >= reproductionThreshold {
             if world.personAt(x: generatedX, y: generatedY) != nil {
                 let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson?.colonyID != colonyID {
@@ -135,9 +129,7 @@ class Person {
                         die()
                         return
                     } else {
-                        let child = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
-                        world.people[child.x][child.y] = child
-                        
+                        _ = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
                         x = generatedX
                         y = generatedY
                         reproductionValue = 0

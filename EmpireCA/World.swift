@@ -92,6 +92,28 @@ class World {
     }
 }
 
+struct RandomChance{
+    var probability: Double
+    
+    init(of probability: Double) {
+        self.probability = probability
+    }
+    
+    func isFulfilled() -> Bool {
+        return .randomValueForProbability() < probability
+    }
+}
+extension BinaryFloatingPoint {
+    static func randomValueForProbability(in bounds: (lo: Self, hi: Self)? = nil) -> Self {
+        let random = Self(arc4random()) / Self(UInt32.max)
+        if let (lo, hi) = bounds {
+            return lo + (hi - lo) * random
+        } else {
+            return random
+        }
+    }
+}
+
 extension Int {
     static func randomValue(lessThan bound: Int) -> Int {
         return Int(arc4random_uniform(UInt32(bound)))
