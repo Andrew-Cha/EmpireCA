@@ -22,17 +22,17 @@ class Person {
     var world: World
     
     init(newColonyID: Int, xNew: Int, yNew: Int, worldPassed: World) {
-        world = worldPassed
-        colonyID = newColonyID
-        reproductionValue = 0
-        x = xNew
-        y = yNew
-        isAlive = true
-        strength = Double(arc4random_uniform(100))
-        isDiseased = false
+        self.world = worldPassed
+        self.colonyID = newColonyID
+        self.reproductionValue = 0
+        self.x = xNew
+        self.y = yNew
+        self.isAlive = true
+        self.strength = Double(arc4random_uniform(100))
+        self.isDiseased = false
         let diseasedChance = arc4random_uniform(100)
         if diseasedChance == 99{
-            isDiseased = true
+            self.isDiseased = true
         }
     }
     
@@ -45,7 +45,7 @@ class Person {
         isAlive = true
         let randomNumberForStrength = arc4random_uniform(100)
         if randomNumberForStrength == 99 {
-        strength = parent.strength * 0.7
+            strength = parent.strength * 0.7
         } else {
             strength = parent.strength
         }
@@ -53,7 +53,7 @@ class Person {
         if randomNumberForStrength > 80 {
             strength = parent.strength * 0.9
         } else {
-           strength = parent.strength
+            strength = parent.strength
         }
         
         isDiseased = false
@@ -61,6 +61,11 @@ class Person {
         if diseasedChance > 80{
             isDiseased = true
         }
+    }
+    
+    func die() {
+        isAlive = false
+        world.people[x][y] = nil
     }
     
     func fightDefended(defendant: Person, attacker: Person) -> Bool {
@@ -72,10 +77,12 @@ class Person {
     }
     
     func update() {
+        
         if age > Int(strength) {
             die()
             return
         }
+        
         if isDiseased {
             let randomChanceToDie = Int(arc4random_uniform(100))
             if randomChanceToDie == 100 {
@@ -83,6 +90,7 @@ class Person {
                 return
             }
         }
+        
         let randomX = Int(arc4random_uniform(2))
         let randomX2 = Int(arc4random_uniform(2))
         let randomY = Int(arc4random_uniform(2))
@@ -92,16 +100,35 @@ class Person {
         
         age = age + 1
         reproductionValue += 1
-        if reproductionValue < 2 {
-            return
-        }
-        if reproductionValue >= 2 {
-            
+        
+        if reproductionValue < 10 {
             if world.personAt(x: generatedX, y: generatedY) != nil {
                 let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson?.colonyID != colonyID {
                     if fightDefended(defendant: defendingPerson!, attacker: self) {
-                        self.die()
+                        die()
+                        return
+                    } else {
+                        x = generatedX
+                        y = generatedY
+                        world.people[x][y] = self
+                    }
+                }
+                
+            } else if world.isLandAt(x: generatedX, y: generatedY) {
+                x = generatedX
+                y = generatedY
+                world.people[x][y] = self
+                return
+            }
+        }
+        
+        if reproductionValue >= 10 {
+            if world.personAt(x: generatedX, y: generatedY) != nil {
+                let defendingPerson = world.personAt(x: generatedX, y: generatedY)
+                if defendingPerson?.colonyID != colonyID {
+                    if fightDefended(defendant: defendingPerson!, attacker: self) {
+                        die()
                         return
                     } else {
                         let child = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
@@ -111,6 +138,7 @@ class Person {
                         y = generatedY
                         reproductionValue = 0
                         world.people[x][y] = self
+                        return
                     }
                 }
             } else if world.isLandAt(x: generatedX, y: generatedY) {
@@ -121,14 +149,10 @@ class Person {
                 y = generatedY
                 reproductionValue = 0
                 world.people[x][y] = self
+                return
             }
         }
-        
-    }
-    
-    func die() {
-        isAlive = false
-        world.people[x][y] = nil
     }
 }
+
 

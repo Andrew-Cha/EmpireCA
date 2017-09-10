@@ -18,6 +18,7 @@
 		DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588E1F59A7E4007B18FC /* Colonies.swift */; };
 		DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958921F59AA27007B18FC /* Bitmap.swift */; };
 		DF2958951F5B0845007B18FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958941F5B0845007B18FC /* World.swift */; };
+		DF98CD811F64B06400C29575 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF98CD801F64B06400C29575 /* Pixel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		DF29588E1F59A7E4007B18FC /* Colonies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colonies.swift; sourceTree = "<group>"; };
 		DF2958921F59AA27007B18FC /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		DF2958941F5B0845007B18FC /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		DF98CD801F64B06400C29575 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				DF2958921F59AA27007B18FC /* Bitmap.swift */,
 				DF29588E1F59A7E4007B18FC /* Colonies.swift */,
 				DF29588C1F59A7DA007B18FC /* People.swift */,
+				DF98CD801F64B06400C29575 /* Pixel.swift */,
 				DF2958941F5B0845007B18FC /* World.swift */,
 			);
 			name = World;
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF98CD811F64B06400C29575 /* Pixel.swift in Sources */,
 				DF2958951F5B0845007B18FC /* World.swift in Sources */,
 				DF2958611F59A4FE007B18FC /* ViewController.swift in Sources */,
 				DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */,

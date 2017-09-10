@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+
+let colonyColors = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
 class World {
     var colonyNumber = 0
     let width = 1280
@@ -41,7 +43,7 @@ class World {
                     let randomG: UInt8 = UInt8(0 + (person.colonyID * 20) + 120)
                     let randomB: UInt8 = UInt8(0 + (person.colonyID * 20) + 110)
                     people[x][y] = person
-                    bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
+                    bitmap[person.x, person.y] = Pixel(r: randomR, g: randomG, b: randomB, a: 255)
                     break // to get out of the while loop
                 }
             }
@@ -57,24 +59,15 @@ class World {
         let everyone = people.flatMap { $0.flatMap { $0 } }
         for person in everyone {
             person.update()
-            // let child: Person
-            //child = person.makeChild(childOf: person, xNew: savedX, yNew: savedY, newColonyID: person.colonyID)
         }
     }
     
     func render() {
         for x in 0..<width {
             for y in 0..<height {
-                // bitmap[x, y] = Bitmap.Pixel(r: UInt8(randomR), g: UInt8(randomG), b: UInt8(randomB), a: 255)
                 if let person = people[x][y] {
                     if person.isAlive == true {
-                        // let oldPerson: Person = person.copy(of: person)
-                        let randomR = UInt8(0 + (person.colonyID * 20) + 125)
-                        let randomG = UInt8(0 + (person.colonyID * 20) + 120)
-                        let randomB = UInt8(0 + (person.colonyID * 20) + 110)
-                        // bitmap[oldPerson.x, oldPerson.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
-                        bitmap[person.x, person.y] = Bitmap.Pixel(r: randomR, g: randomG, b: randomB, a: 255)
-                        // people[oldPerson.x - 1][oldPerson.y - 1] = oldPerson
+                        bitmap[person.x, person.y] = Pixel(red: <#T##BinaryFloatingPoint#>, green: <#T##BinaryFloatingPoint#>, blue: <#T##BinaryFloatingPoint#>)
                     } else {
                         bitmap[x, y] = .clear
                     }
@@ -82,8 +75,6 @@ class World {
             }
         }
         imageViewStored?.image = UIImage(cgImage: (bitmap.cgImage()))
-        //view.insertSubview(imageView, aboveSubview: view)
-        //   print("all done!")
     }
     
     
