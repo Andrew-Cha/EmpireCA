@@ -64,17 +64,17 @@ class World {
         for x in 0..<width {
             for y in 0..<height {
                 if let person = people[x][y] {
-                    if person.isAlive == true {
-                        let uiColor = colors[person.colonyID]
-                        bitmap[person.x, person.y] = Pixel(uiColor)
-                    } else {
-                        bitmap[x, y] = Pixel.clear
-                    }
+                    let uiColor = colors[person.colonyID]
+                    bitmrap[person.x, person.y] = Pixel(uiColor)
+                } else {
+                    bitmap[x, y] = Pixel.clear
                 }
             }
         }
         imageViewStored?.image = UIImage(cgImage: (bitmap.cgImage()))
     }
+    
+    
     
     
     func personAt(x: Int, y: Int) -> Person? {
