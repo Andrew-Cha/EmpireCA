@@ -68,7 +68,7 @@ class World {
                         let uiColor = colors[person.colonyID]
                         bitmap[person.x, person.y] = Pixel(uiColor)
                     } else {
-                        bitmap[x, y] = .clear
+                        bitmap[x, y] = Pixel.clear
                     }
                 }
             }

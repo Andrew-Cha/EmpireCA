@@ -76,8 +76,10 @@ class Person {
         }
     }
     
-    func clearOldLocation() {
-        world.people[x][y] = nil
+    func moveTo(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+        world.people[x][y] = self
     }
     
     func update() {
@@ -113,18 +115,13 @@ class Person {
                         die()
                         return
                     } else {
-                        self.clearOldLocation()
-                        x = generatedX
-                        y = generatedY
-                        world.people[x][y] = self
+                        defendingPerson.die()
+                        moveTo(x: generatedX, y: generatedY)
                     }
                 }
                 
             } else if world.isLandAt(x: generatedX, y: generatedY) {
-                self.clearOldLocation()
-                x = generatedX
-                y = generatedY
-                world.people[x][y] = self
+                moveTo(x: generatedX, y: generatedY)
                 return
             }
         }
