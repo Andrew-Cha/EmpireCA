@@ -77,7 +77,7 @@ class Person {
     }
     
     func moveTo(x: Int, y: Int) {
-        world.people[x][y] = nil
+        world.people[self.x][self.y] = nil
         self.x = x
         self.y = y
         world.people[x][y] = self
