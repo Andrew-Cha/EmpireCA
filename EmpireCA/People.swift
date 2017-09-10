@@ -76,6 +76,10 @@ class Person {
         }
     }
     
+    func clearOldLocation() {
+        world.people[x][y] = nil
+    }
+    
     func update() {
         
         if age > Int(strength) {
@@ -102,13 +106,14 @@ class Person {
         reproductionValue += 1
         
         if reproductionValue < 20 {
-            if world.personAt(x: generatedX, y: generatedY) != nil {
-                let defendingPerson = world.personAt(x: generatedX, y: generatedY)
-                if defendingPerson?.colonyID != colonyID {
-                    if fightDefended(defendant: defendingPerson!, attacker: self) {
+            if let defendingPerson = world.personAt(x: generatedX, y: generatedY) {
+                // let defendingPerson = world.personAt(x: generatedX, y: generatedY)
+                if defendingPerson.colonyID != colonyID {
+                    if fightDefended(defendant: defendingPerson, attacker: self) {
                         die()
                         return
                     } else {
+                        self.clearOldLocation()
                         x = generatedX
                         y = generatedY
                         world.people[x][y] = self
@@ -116,6 +121,7 @@ class Person {
                 }
                 
             } else if world.isLandAt(x: generatedX, y: generatedY) {
+                self.clearOldLocation()
                 x = generatedX
                 y = generatedY
                 world.people[x][y] = self

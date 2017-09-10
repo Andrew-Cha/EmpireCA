@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let colors: [UIColor] = [.white, .black, .green, .blue, .cyan, .magenta, .red]
+let colors: [UIColor] = [.white, .black, .cyan, .magenta, .red]
 class World {
     var colonyNumber = 0
     let width = 1280
