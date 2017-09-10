@@ -19,7 +19,7 @@ import UIKit
 var timer: Timer!
 var timerinterval = 0
 class ViewController: UIViewController {
-    var world = World(colonyCount: 6)
+    var world = World(colonyCount: 5)
     override func viewDidLoad() {
         super.viewDidLoad()
         

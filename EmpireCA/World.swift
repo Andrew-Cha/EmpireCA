@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let colors: [UIColor] = [.red, .blue, .brown, .yellow, .white]
+let colors: [UIColor] = [.white, .black, .green, .blue, .cyan, .magenta, .red]
 class World {
     var colonyNumber = 0
     let width = 1280
@@ -31,7 +31,7 @@ class World {
     
     func startHumanity(view: UIView) {
         
-        for id in 1..<colonyNumber {
+        for id in 0..<colonyNumber {
             print(id)
             while true {
                 let x = Int.randomValue(lessThan: width)
