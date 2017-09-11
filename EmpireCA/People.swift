@@ -11,10 +11,11 @@ import UIKit
 
 let strengthDecreaseChance = RandomChance(of: 0.25)
 let diseaseCureChance = RandomChance(of: 0.2)
-let diseaseHeredityChance = RandomChance(of: 0.2)
-let diseaseMutationChance = RandomChance(of: 0.0001)
+let diseaseHeredityChance = RandomChance(of: 0.02)
+let diseaseMutationChance = RandomChance(of: 0.000001)
 let diseaseSpreadChance = RandomChance(of: 0.5)
-let reproductionThreshold = 20
+let reproductionThreshold = 10
+
 class Person {
     var age = 0
     var strength: Int
@@ -37,7 +38,7 @@ class Person {
         self.isDiseased = false
     }
     
-   @discardableResult init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
+    @discardableResult init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
         self.world = parent.world
         self.x = parent.x
         self.y = parent.y
@@ -48,6 +49,7 @@ class Person {
         
         let diseasedChance = parent.isDiseased ? diseaseHeredityChance : diseaseMutationChance
         isDiseased = diseasedChance.isFulfilled()
+        
         if strengthDecreaseChance.isFulfilled(){
             strength = .randomValue(lessThan: strength)
         }
@@ -76,13 +78,18 @@ class Person {
     
     func update() {
         
-        if age > Int(strength) {
+        if age >= strength {
             die()
             return
         }
         
         if isDiseased {
-        strength -= 1
+            let probabilityToBeCured = Int.randomValue(lessThan: 1000)
+            if probabilityToBeCured == 999 {
+                self.isDiseased = false
+            } else {
+                strength -= 1
+            }
         }
         
         let randomX = Int(arc4random_uniform(2))
@@ -107,9 +114,9 @@ class Person {
                         moveTo(x: generatedX, y: generatedY)
                     }
                 } else {
-                    if defendingPerson.isDiseased == false{
-                       let chanceToSpreadDisease = Int.randomValue(lessThan: 99)
-                        if chanceToSpreadDisease > 50 {
+                    if defendingPerson.isDiseased == false && self.isDiseased{
+                        let chanceToSpreadDisease = Int.randomValue(lessThan: 99)
+                        if chanceToSpreadDisease > 90 {
                             defendingPerson.isDiseased = true
                         }
                     }

@@ -11,27 +11,26 @@ import UIKit
 
 let colors: [UIColor] = [.white, .black, .cyan, .magenta, .red]
 class World {
-    var colonyNumber = 0
     let width = 1280
     let height = 720
-    let backgroundImage = UIImage(named: "world_map.png")!
+    var backgroundImage = UIImage(named: "")!
     var people: [[Person?]]
     let bitmap: Bitmap
     var pixelData: CFData
     let imageData: UnsafePointer<UInt8>!
     var imageViewStored: UIImageView?
     
-    init(colonyCount: Int) {
+    init(with image: String) {
+        backgroundImage = UIImage(named: "\(image)")!
         bitmap = Bitmap(width: width, height: height)
         pixelData = backgroundImage.cgImage!.dataProvider!.data!
         imageData = CFDataGetBytePtr(pixelData)
-        colonyNumber = colonyCount
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
     
     func startHumanity(view: UIView) {
         
-        for id in 0..<colonyNumber {
+        for id in 0..<colors.count{
             print(id)
             while true {
                 let x = Int.randomValue(lessThan: width)
@@ -88,7 +87,7 @@ class World {
     func isLandAt(x: Int, y: Int) -> Bool {
         let pixelInfo = (width * y + x) * 4
         let g = imageData[pixelInfo + 1]
-        return g > 100
+        return g > 95
     }
 }
 
