@@ -11,7 +11,7 @@ import UIKit
 
 let strengthDecreaseChance = RandomChance(of: 0.25)
 let diseaseCureChance = RandomChance(of: 0.2)
-let diseaseHeredityChance = RandomChance(of: 0.02)
+let diseaseHeredityChance = RandomChance(of: 0.2)
 let diseaseMutationChance = RandomChance(of: 0.000001)
 let diseaseSpreadChance = RandomChance(of: 0.5)
 let reproductionThreshold = 10
@@ -36,6 +36,9 @@ class Person {
         self.isAlive = true
         self.strength = Int(arc4random_uniform(100))
         self.isDiseased = false
+        if strength < 50 {
+            strength = 50
+        }
     }
     
     @discardableResult init(childOf parent: Person, xNew: Int, yNew: Int, newColonyID: Int) {
