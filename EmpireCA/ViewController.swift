@@ -10,9 +10,9 @@
 // Make so pixels cant cross max view frame
 import UIKit
 var timer: Timer!
-var imageName = "world_map_full.png"
+
 class ViewController: UIViewController {
-    var world = World(with: "\(imageName)")
+    var world = World()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     func createBackgroundImage() {
         let backgroundImage = UIImageView(frame: view.frame)
-        backgroundImage.image = UIImage(named: "\(imageName)")
+        backgroundImage.image = UIImage(named: "world_map_pretty.png")
         self.view.insertSubview(backgroundImage, at: 0)
     }
     

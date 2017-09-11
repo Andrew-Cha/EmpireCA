@@ -13,15 +13,14 @@ let colors: [UIColor] = [.white, .black, .cyan, .magenta, .red]
 class World {
     let width = 1280
     let height = 720
-    var backgroundImage = UIImage(named: "")!
+    var backgroundImage = UIImage(named: "world_map.png")!
     var people: [[Person?]]
     let bitmap: Bitmap
     var pixelData: CFData
     let imageData: UnsafePointer<UInt8>!
     var imageViewStored: UIImageView?
     
-    init(with image: String) {
-        backgroundImage = UIImage(named: "\(image)")!
+    init() {
         bitmap = Bitmap(width: width, height: height)
         pixelData = backgroundImage.cgImage!.dataProvider!.data!
         imageData = CFDataGetBytePtr(pixelData)
