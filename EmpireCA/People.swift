@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 let strengthDecreaseChance = RandomChance(of: 0.25)
 let diseaseCureChance = RandomChance(of: 0.2)

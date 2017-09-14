@@ -10,24 +10,24 @@ import Foundation
 import UIKit
 
 let colors: [UIColor] = [.white, .black, .cyan, .magenta, .red]
+
 class World {
     let width = 1280
     let height = 720
-    var backgroundImage = UIImage(named: "world_map.png")!
     var people: [[Person?]]
     let bitmap: Bitmap
     var pixelData: CFData
     let imageData: UnsafePointer<UInt8>!
-    var imageViewStored: UIImageView?
+    let backgroundImage = UIImage(named: "world_map.png")
     
     init() {
         bitmap = Bitmap(width: width, height: height)
-        pixelData = backgroundImage.cgImage!.dataProvider!.data!
+        pixelData = (backgroundImage?.cgImage?.dataProvider?.data)!
         imageData = CFDataGetBytePtr(pixelData)
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
     
-    func startHumanity(view: UIView) {
+    func startHumanity() {
         
         for id in 0..<colors.count{
             print(id)
@@ -44,11 +44,7 @@ class World {
                 }
             }
         }
-        let imageView = UIImageView(frame: view.frame)
-        imageView.image = UIImage(cgImage: (bitmap.cgImage()))
-        imageViewStored = imageView
-        view.insertSubview(imageView, aboveSubview: view)
-        print("all done!")
+        
     }
     
     func update() {
@@ -69,7 +65,7 @@ class World {
                 }
             }
         }
-        imageViewStored?.image = UIImage(cgImage: (bitmap.cgImage()))
+     //   imageView = UIImage(cgImage: (bitmap.cgImage()))
     }
     
     

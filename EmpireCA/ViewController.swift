@@ -9,15 +9,15 @@
 
 // Make so pixels cant cross max view frame
 import UIKit
+
 var timer: Timer!
 
 class ViewController: UIViewController {
+    @IBOutlet weak var backgroundMap: UIScrollView!
     var world = World()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        createBackgroundImage()
-        world.startHumanity(view: self.view)
+        world.startHumanity()
         
         timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
@@ -25,12 +25,6 @@ class ViewController: UIViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func createBackgroundImage() {
-        let backgroundImage = UIImageView(frame: view.frame)
-        backgroundImage.image = UIImage(named: "world_map_pretty.png")
-        self.view.insertSubview(backgroundImage, at: 0)
     }
     
     func update() {
