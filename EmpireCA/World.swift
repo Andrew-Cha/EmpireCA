@@ -27,7 +27,7 @@ class World {
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
     
-    func startHumanity() {
+    func startHumanity() -> UIImage {
         
         for id in 0..<colors.count{
             print(id)
@@ -44,7 +44,8 @@ class World {
                 }
             }
         }
-        
+        let imageReturned = UIImage(cgImage: (bitmap.cgImage()))
+        return imageReturned
     }
     
     func update() {
@@ -54,7 +55,7 @@ class World {
         }
     }
     
-    func render() {
+    func render() -> UIImage{
         for x in 0..<width {
             for y in 0..<height {
                 if let person = people[x][y] {
@@ -65,7 +66,8 @@ class World {
                 }
             }
         }
-     //   imageView = UIImage(cgImage: (bitmap.cgImage()))
+        let imageReturned = UIImage(cgImage: (bitmap.cgImage()))
+        return imageReturned
     }
     
     

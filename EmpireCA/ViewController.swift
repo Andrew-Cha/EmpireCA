@@ -13,11 +13,14 @@ import UIKit
 var timer: Timer!
 
 class ViewController: UIViewController {
-    @IBOutlet weak var backgroundMap: UIScrollView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var mapScrollView: UIScrollView!
+
     var world = World()
     override func viewDidLoad() {
         super.viewDidLoad()
-        world.startHumanity()
+        backgroundImage.image = world.startHumanity()
+        backgroundImage.image = world.render()
         
         timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
@@ -29,7 +32,7 @@ class ViewController: UIViewController {
     
     func update() {
         world.update()
-        world.render()
+        backgroundImage.image = world.render()
         //World(colonyCount: 3).lifeTick(view: self.view)
     }
 }
