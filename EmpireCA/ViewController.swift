@@ -11,19 +11,23 @@
 import UIKit
 
 var timer: Timer!
-
+var timerUpdate: Timer!
 class ViewController: UIViewController {
-    @IBOutlet weak var backgroundImage: UIImageView!
+    
+    @IBOutlet weak var backgroundMap: UIImageView!
     @IBOutlet weak var mapScrollView: UIScrollView!
 
     var world = World()
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundImage.image = world.startHumanity()
-        backgroundImage.image = world.render()
+        backgroundMap.image = world.startHumanity()
+        backgroundMap.image = world.render()
         
         timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
             self.update()
+        }
+        timer = .scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
+            self.updateMap()
         }
     }
     override func didReceiveMemoryWarning() {
@@ -32,8 +36,10 @@ class ViewController: UIViewController {
     
     func update() {
         world.update()
-        backgroundImage.image = world.render()
-        //World(colonyCount: 3).lifeTick(view: self.view)
+    
+    }
+    func updateMap() {
+        backgroundMap.image = world.render()
     }
 }
 
