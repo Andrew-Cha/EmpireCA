@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF2525CC1F6DB1EF0052732B /* MapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2525CB1F6DB1EF0052732B /* MapTableViewController.swift */; };
 		DF29585F1F59A4FE007B18FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29585E1F59A4FE007B18FC /* AppDelegate.swift */; };
-		DF2958611F59A4FE007B18FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958601F59A4FE007B18FC /* ViewController.swift */; };
+		DF2958611F59A4FE007B18FC /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958601F59A4FE007B18FC /* SimulationViewController.swift */; };
 		DF2958641F59A4FE007B18FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2958621F59A4FE007B18FC /* Main.storyboard */; };
 		DF2958661F59A4FE007B18FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF2958651F59A4FE007B18FC /* Assets.xcassets */; };
 		DF2958691F59A4FE007B18FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2958671F59A4FE007B18FC /* LaunchScreen.storyboard */; };
@@ -39,9 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF2525CB1F6DB1EF0052732B /* MapTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewController.swift; sourceTree = "<group>"; };
 		DF29585B1F59A4FE007B18FC /* EmpireCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmpireCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29585E1F59A4FE007B18FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF2958601F59A4FE007B18FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DF2958601F59A4FE007B18FC /* SimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
 		DF2958631F59A4FE007B18FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF2958651F59A4FE007B18FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2958681F59A4FE007B18FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,7 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				DF29585E1F59A4FE007B18FC /* AppDelegate.swift */,
-				DF2958601F59A4FE007B18FC /* ViewController.swift */,
+				DF2958601F59A4FE007B18FC /* SimulationViewController.swift */,
+				DF2525CB1F6DB1EF0052732B /* MapTableViewController.swift */,
 				DF2958911F59A977007B18FC /* Storyboard */,
 				DF2958901F59A91D007B18FC /* World */,
 				DF2958651F59A4FE007B18FC /* Assets.xcassets */,
@@ -295,8 +298,9 @@
 			files = (
 				DF98CD811F64B06400C29575 /* Pixel.swift in Sources */,
 				DF2958951F5B0845007B18FC /* World.swift in Sources */,
-				DF2958611F59A4FE007B18FC /* ViewController.swift in Sources */,
+				DF2958611F59A4FE007B18FC /* SimulationViewController.swift in Sources */,
 				DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */,
+				DF2525CC1F6DB1EF0052732B /* MapTableViewController.swift in Sources */,
 				DF29588D1F59A7DA007B18FC /* People.swift in Sources */,
 				DF29585F1F59A4FE007B18FC /* AppDelegate.swift in Sources */,
 				DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */,

@@ -12,7 +12,7 @@ import UIKit
 
 var timer: Timer!
 var timerUpdate: Timer!
-class ViewController: UIViewController {
+class SimulationViewController: UIViewController {
     
     @IBOutlet weak var backgroundMap: UIImageView!
     @IBOutlet weak var mapScrollView: UIScrollView!
