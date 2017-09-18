@@ -10,13 +10,14 @@
 // Make so pixels cant cross max view frame
 import UIKit
 
-var timer: Timer!
-var timerUpdate: Timer!
+
 class SimulationViewController: UIViewController {
     
     @IBOutlet weak var backgroundMap: UIImageView!
     @IBOutlet weak var mapScrollView: UIScrollView!
-
+    
+    var timer: Timer?
+    var timerUpdate: Timer?
     var world = World()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,9 @@ class SimulationViewController: UIViewController {
             self.updateMap()
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+        timerUpdate?.invalidate()
     }
     
     func update() {

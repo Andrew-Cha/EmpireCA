@@ -286,11 +286,9 @@
                             <outlet property="delegate" destination="VWK-Gh-sH7" id="46R-dr-aOK"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="mapTableView" destination="iOg-SS-k47" id="6SD-yX-fWv"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHe-AG-8Kz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2IJ-2J-onD"/>
             </objects>
             <point key="canvasLocation" x="-184" y="1033"/>
         </scene>

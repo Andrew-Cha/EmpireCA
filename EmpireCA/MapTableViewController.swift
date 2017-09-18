@@ -12,15 +12,8 @@ import UIKit
 var imageName = UIImage(named: "")
 class MapTableViewController: UITableViewController {
     
-    @IBOutlet var mapTableView: UITableView!
-    
-    
-    override func viewDidLoad() {
-        mapTableView.delegate = self
-        mapTableView.dataSource = self
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("cell at #\(indexPath.row) is selected!")
     }
 }
