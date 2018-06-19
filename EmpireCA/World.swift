@@ -26,9 +26,18 @@ class World {
         imageData = CFDataGetBytePtr(pixelData)
         people = .init(repeating: .init(repeating: nil, count: height), count: width)
     }
-    
+	
+	deinit {
+		for x in 0..<width {
+			for y in 0..<height {
+				if people[x][y] != nil {
+					people[x][y] = nil
+				}
+			}
+		}
+	}
+	
     func startHumanity() -> UIImage {
-        
         for id in 0..<colors.count{
             print(id)
             while true {
@@ -40,7 +49,7 @@ class World {
                     let person = Person(newColonyID: id, xNew: x, yNew: y, worldPassed: self)
                     people[x][y] = person
                     bitmap[person.x, person.y] = Pixel(uiColor)
-                    break // to get out of the while loop
+                    break
                 }
             }
         }
@@ -99,6 +108,7 @@ struct RandomChance{
         return .randomValueForProbability() < probability
     }
 }
+
 extension BinaryFloatingPoint {
     static func randomValueForProbability(in bounds: (lo: Self, hi: Self)? = nil) -> Self {
         let random = Self(arc4random()) / Self(UInt32.max)

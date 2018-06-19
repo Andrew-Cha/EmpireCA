@@ -15,7 +15,7 @@
 		DF2958691F59A4FE007B18FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2958671F59A4FE007B18FC /* LaunchScreen.storyboard */; };
 		DF2958741F59A4FE007B18FC /* EmpireCATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958731F59A4FE007B18FC /* EmpireCATests.swift */; };
 		DF29587F1F59A4FE007B18FC /* EmpireCAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29587E1F59A4FE007B18FC /* EmpireCAUITests.swift */; };
-		DF29588D1F59A7DA007B18FC /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588C1F59A7DA007B18FC /* People.swift */; };
+		DF29588D1F59A7DA007B18FC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588C1F59A7DA007B18FC /* Person.swift */; };
 		DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29588E1F59A7E4007B18FC /* Colonies.swift */; };
 		DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958921F59AA27007B18FC /* Bitmap.swift */; };
 		DF2958951F5B0845007B18FC /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2958941F5B0845007B18FC /* World.swift */; };
@@ -54,7 +54,7 @@
 		DF29587A1F59A4FE007B18FC /* EmpireCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmpireCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF29587E1F59A4FE007B18FC /* EmpireCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpireCAUITests.swift; sourceTree = "<group>"; };
 		DF2958801F59A4FE007B18FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF29588C1F59A7DA007B18FC /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		DF29588C1F59A7DA007B18FC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		DF29588E1F59A7E4007B18FC /* Colonies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colonies.swift; sourceTree = "<group>"; };
 		DF2958921F59AA27007B18FC /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		DF2958941F5B0845007B18FC /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			children = (
 				DF2958921F59AA27007B18FC /* Bitmap.swift */,
 				DF29588E1F59A7E4007B18FC /* Colonies.swift */,
-				DF29588C1F59A7DA007B18FC /* People.swift */,
+				DF29588C1F59A7DA007B18FC /* Person.swift */,
 				DF98CD801F64B06400C29575 /* Pixel.swift */,
 				DF2958941F5B0845007B18FC /* World.swift */,
 			);
@@ -222,23 +222,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Andrius;
 				TargetAttributes = {
 					DF29585A1F59A4FE007B18FC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9LMTS586BX;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					DF29586E1F59A4FE007B18FC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9LMTS586BX;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DF29585A1F59A4FE007B18FC;
 					};
 					DF2958791F59A4FE007B18FC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9LMTS586BX;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DF29585A1F59A4FE007B18FC;
 					};
@@ -301,7 +304,7 @@
 				DF2958611F59A4FE007B18FC /* SimulationViewController.swift in Sources */,
 				DF29588F1F59A7E4007B18FC /* Colonies.swift in Sources */,
 				DF2525CC1F6DB1EF0052732B /* MapTableViewController.swift in Sources */,
-				DF29588D1F59A7DA007B18FC /* People.swift in Sources */,
+				DF29588D1F59A7DA007B18FC /* Person.swift in Sources */,
 				DF29585F1F59A4FE007B18FC /* AppDelegate.swift in Sources */,
 				DF2958931F59AA27007B18FC /* Bitmap.swift in Sources */,
 			);
@@ -368,7 +371,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -376,7 +381,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -399,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -418,7 +427,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -426,7 +437,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -443,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -457,10 +472,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9LMTS586BX;
 				INFOPLIST_FILE = EmpireCA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -470,10 +487,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9LMTS586BX;
 				INFOPLIST_FILE = EmpireCA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -487,7 +506,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmpireCA.app/EmpireCA";
 			};
 			name = Debug;
@@ -502,7 +522,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmpireCA.app/EmpireCA";
 			};
 			name = Release;
@@ -516,7 +537,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = EmpireCA;
 			};
 			name = Debug;
@@ -530,7 +552,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Andrius.EmpireCAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = EmpireCA;
 			};
 			name = Release;

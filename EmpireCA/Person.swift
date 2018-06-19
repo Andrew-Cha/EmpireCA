@@ -24,7 +24,7 @@ class Person {
     var isDiseased: Bool
     var x: Int
     var y: Int
-    var world: World
+	weak var world: World? //memory leak here
     
     init(newColonyID: Int, xNew: Int, yNew: Int, worldPassed: World) {
         self.world = worldPassed
@@ -55,12 +55,13 @@ class Person {
         if strengthDecreaseChance.isFulfilled(){
             strength = .randomValue(lessThan: strength)
         }
-        world.people[self.x][self.y] = self
+        world!.people[self.x][self.y] = self
     }
     
     func die() {
         isAlive = false
-        world.people[x][y] = nil
+        world!.people[x][y] = nil
+		world = nil
     }
     
     func fightDefended(defendant: Person, attacker: Person) -> Bool {
@@ -72,10 +73,10 @@ class Person {
     }
     
     func moveTo(x: Int, y: Int) {
-        world.people[self.x][self.y] = nil
+        world!.people[self.x][self.y] = nil
         self.x = x
         self.y = y
-        world.people[x][y] = self
+        world!.people[x][y] = self
     }
     
     func update() {
@@ -105,7 +106,7 @@ class Person {
         reproductionValue += 1
         
         if reproductionValue < reproductionThreshold {
-            if let defendingPerson = world.personAt(x: generatedX, y: generatedY) {
+            if let defendingPerson = world!.personAt(x: generatedX, y: generatedY) {
                 // let defendingPerson = world.personAt(x: generatedX, y: generatedY)
                 if defendingPerson.colonyID != colonyID {
                     if fightDefended(defendant: defendingPerson, attacker: self) {
@@ -124,15 +125,15 @@ class Person {
                     }
                 }
                 
-            } else if world.isLandAt(x: generatedX, y: generatedY) {
+            } else if world!.isLandAt(x: generatedX, y: generatedY) {
                 moveTo(x: generatedX, y: generatedY)
                 return
             }
         }
         
         if reproductionValue >= reproductionThreshold {
-            if world.personAt(x: generatedX, y: generatedY) != nil {
-                let defendingPerson = world.personAt(x: generatedX, y: generatedY)
+            if world!.personAt(x: generatedX, y: generatedY) != nil {
+                let defendingPerson = world!.personAt(x: generatedX, y: generatedY)
                 if defendingPerson?.colonyID != colonyID {
                     if fightDefended(defendant: defendingPerson!, attacker: self) {
                         die()
@@ -142,18 +143,18 @@ class Person {
                         x = generatedX
                         y = generatedY
                         reproductionValue = 0
-                        world.people[x][y] = self
+                        world!.people[x][y] = self
                         return
                     }
                 }
-            } else if world.isLandAt(x: generatedX, y: generatedY) {
+            } else if world!.isLandAt(x: generatedX, y: generatedY) {
                 let child = Person(childOf: self, xNew: x, yNew: y, newColonyID: colonyID)
-                world.people[child.x][child.y] = child
+                world!.people[child.x][child.y] = child
                 
                 x = generatedX
                 y = generatedY
                 reproductionValue = 0
-                world.people[x][y] = self
+                world!.people[x][y] = self
                 return
             }
         }

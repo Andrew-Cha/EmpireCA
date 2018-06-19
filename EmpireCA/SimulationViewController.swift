@@ -19,6 +19,7 @@ class SimulationViewController: UIViewController {
     var timer: Timer?
     var timerUpdate: Timer?
     var world = World()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundMap.image = world.startHumanity()
@@ -31,6 +32,7 @@ class SimulationViewController: UIViewController {
             self.updateMap()
         }
     }
+	
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
         timerUpdate?.invalidate()
@@ -38,8 +40,8 @@ class SimulationViewController: UIViewController {
     
     func update() {
         world.update()
-    
     }
+	
     func updateMap() {
         backgroundMap.image = world.render()
     }
